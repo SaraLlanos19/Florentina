@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Pago</title>
+  <link rel="stylesheet" href="css/pago.css">
+</head>
+
+<body>
+  <div class="contenedor-form">
+    <h2>📝 Datos de Envío</h2>
+    <form id="form-compra" action="php/guardar_pago.php" method="POST" enctype="multipart/form-data">
+      <label for="nombres">Nombres:</label>
+      <input type="text" id="nombres" name="nombres" required>
+
+      <label for="apellidos">Apellidos:</label>
+      <input type="text" id="apellidos" name="apellidos" required>
+
+      <label for="direccion">Dirección:</label>
+      <input type="text" id="direccion" name="direccion" required>
+
+      <label for="barrio">Barrio:</label>
+      <input type="text" id="barrio" name="barrio" required>
+
+      <label for="telefono">Teléfono:</label>
+      <input type="tel" id="telefono" name="telefono" required>
+
+      <label for="precio">💰 Total a pagar:</label>
+      <input type="text" id="precio" name="precio" readonly>
+
+      <fieldset>
+        <legend>💳 Método de Pago</legend>
+        <label>
+          <input type="radio" name="metodo_pago" value="nequi" required> Nequi
+        </label>
+        <img src="imgs/img-pago/nequi.jpg" alt="QR Nequi" class="qr" id="qr-nequi">
+
+        <label>
+          <input type="radio" name="metodo_pago" value="bancolombia"> Bancolombia
+        </label>
+        <img src="imgs/img-pago/nequi.jpg" alt="QR Bancolombia" class="qr" id="qr-bancolombia">
+
+        <label>
+          <input type="radio" name="metodo_pago" value="daviplata"> Daviplata
+        </label>
+        <img src="imgs/img-pago/nequi.jpg" alt="QR Daviplata" class="qr" id="qr-daviplata">
+      </fieldset>
+
+      <!-- Nuevo campo para comprobante -->
+      <label for="comprobante">📎 Subir Comprobante de Pago:</label>
+      <input type="file" id="comprobante" name="comprobante" accept="image/*,application/pdf" required>
+
+      <br><br>
+      <button type="submit">✅ Confirmar Pago</button>
+    </form>
+  </div>
+
+  <script src="js/pago.js"></script>
+</body>
+
+</html>

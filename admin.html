@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Panel Administrador - Florentina</title>
+    <style>
+        /* Estilos base para toda la página */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #fafafa;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Banner superior en modo administrador */
+        .admin-banner {
+            background: #ff6b9a;
+            color: white;
+            padding: 18px 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        /* Contenedor principal centrado y con ancho máximo */
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 16px;
+        }
+
+        /* Contenedor flex para los elementos del menú */
+        .menu-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        /* Tarjeta individual del menú */
+        .menu-card {
+            background: white;
+            border: 1px solid #eee;
+            padding: 14px;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Estilo para el enlace dentro de la tarjeta */
+        .menu-card a {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            background: #f06b9a;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Efecto hover para los enlaces */
+        .menu-card a:hover,
+        .menu-card a:focus {
+            background-color: #d05479;
+            outline: none;
+        }
+
+        /* Nota informativa debajo del menú */
+        .note {
+            margin-top: 14px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Banner indicativo de modo administrador -->
+    <div class="admin-banner">
+        🔧 <strong>Modo Administrador:</strong> Haz clic en una página para abrirla y editar (se abrirá con
+        <code>?admin=1</code>)
+    </div>
+
+    <div class="container">
+        <h2>Selecciona la página a editar</h2>
+
+        <!-- Menú con enlaces a páginas de edición -->
+        <nav class="menu-links" aria-label="Menú de páginas para edición">
+            <!-- Cada tarjeta representa una página editable -->
+            <div class="menu-card">
+                <strong>Menú</strong>
+                <div>
+                    <a href="admin_menu.html" target="_blank" rel="noopener noreferrer">Editar Menú</a>
+                </div>
+            </div>
+        </nav>
+
+        <p class="note">
+            Nota: Este editor usa almacenamiento local (localStorage). Si quieres guardar en servidor necesitarás un
+            endpoint / API para almacenar los cambios.
+        </p>
+    </div>
+</body>
+
+</html>

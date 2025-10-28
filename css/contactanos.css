@@ -1,0 +1,625 @@
+/* =========================== */
+/*         H E A D E R         */
+/* B A R R A   S U P E R I O R */
+/* =========================== */
+
+.header-superior {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    top: 0;
+    left: 0;
+}
+
+.barra-superior {
+    display: flex;
+    flex-direction: column;
+}
+
+.linea-divisora {    
+    width: 0%;
+    margin: 0 auto; 
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.linea-color {
+    height: 5px;
+    background-color: #F06B9A;
+    width: 100%;
+}
+
+/* ===================================== */
+/*             H E A D E R               */
+/* B A R R A   D E   N A V E G A C I Ó N */
+/* ===================================== */
+
+.barra-navegacion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.logo-marca-href {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+/* ============================================= */
+/*                  H E A D E R                  */
+/* C O N T E N E D O R   L O G O   Y   M A R C A */
+/* ============================================= */
+
+.contenedor-logo-marca {
+    display: flex;
+    align-items: center;
+    z-index: 12; /* Por encima del menú móvil */
+}
+
+.logo-florentina {
+    width: auto;
+    height: 40px; /* Reducido para móviles */
+    transition: transform 0.3s ease;
+}
+
+/* =================================== */
+/*              B O T Ó N              */
+/*  H A M B U R G U E S A  M Ó V I L   */
+/* =================================== */
+
+.hamburguesa {
+    display: none; /* Oculto por defecto */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 12; /* Por encima del menú móvil */
+}
+
+.hamburguesa span {
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    border-radius: 5px;
+    transition: all 0.3s linear;
+    transform-origin: center;
+}
+
+/* Animación cuando el menú está activo */
+.hamburguesa.activo span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburguesa.activo span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburguesa.activo span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* =================================== */
+/*             H E A D E R             */
+/* M E N Ú   D E   N A V E G A C I Ó N */
+/* =================================== */
+
+.menu-navegacion {
+    display: flex;
+    gap: 20px; /* Reducido para móviles */
+    margin: 0 auto;
+}
+
+.elemento-menu {
+    display: inline-block;
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background-color: transparent;
+}
+
+.elemento-menu:hover {
+    color: #fff;
+    background-color: #F06B9A;
+    transform: translateY(-3px);
+    text-shadow: 0 0 8px rgba(240, 107, 154, 0.5);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ================================= */
+/*             H E A D E R           */
+/* C A M P O   D E   B Ú S Q U E D A */
+/* ================================= */
+
+.buscador-navegacion {
+    position: relative;
+    display: none; /* Oculto en móviles por defecto */
+}
+
+.buscador-navegacion input {
+    padding: 10px 15px 10px 35px; 
+    border: 1px solid #E0E0E0;
+    border-radius: 20px;
+    font-family: "Work Sans", sans-serif;
+    font-size: 16px;
+    outline: none;
+    width: 300px;
+    background-color: #f5f5f5; 
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.buscador-navegacion input:focus {
+    border-color: #F06B9A;
+    background-color: white;
+    box-shadow: 0 0 0 2px rgba(240, 107, 154, 0.2);
+}
+
+.buscador-navegacion input::placeholder {
+    color: #999999;
+    font-style: italic; 
+}
+
+.sugerencias {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 100%;
+    background-color: white;    
+    border-top: none;
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 0 0 10px 10px;
+    z-index: 10;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display:list-item; /* Oculto por defecto */
+}
+
+.sugerencias.mostrar {
+    display: block;
+}
+
+.sugerencias li {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.sugerencias li:hover {
+    background-color: #f0f0f0;
+}
+
+/* ========================= */
+/*       H E A D E R         */
+/* I C O N O   D E   L U P A */
+/* ========================= */
+
+.buscador-navegacion::before {
+    content: "🔍";
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #999;
+    z-index: 1;
+}
+
+/* ==================================== */
+/*     M E D I A    Q U E R I E S       */
+/* ==================================== */
+
+@media screen and (min-width: 768px) {
+    .barra-navegacion {
+        padding: 10px 30px;
+    }
+    
+    .logo-florentina {
+        height: 45px; /* Tamaño intermedio para tablet */
+    }
+    
+    .menu-navegacion {
+        gap: 30px; /* Espaciado intermedio */
+    }
+    
+    .buscador-navegacion {
+        display: block; /* Mostramos la búsqueda en tablet */
+    }
+    
+    .buscador-navegacion input {
+        width: 200px; /* Más estrecho en tablet */
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .logo-florentina {
+        height: 50px; /* Tamaño original en desktop */
+    }
+    
+    .menu-navegacion {
+        gap: 50px; /* Espaciado original */
+    }
+    
+    .buscador-navegacion input {
+        width: 300px; /* Ancho original */
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .hamburguesa {
+        display: flex; /* Mostramos el botón hamburguesa */
+    }
+    
+    .menu-navegacion {
+        position: fixed;
+        top: 65px; /* Justo debajo del header */
+        left: 0;
+        width: 100%;
+        height: 0;
+        flex-direction: column;
+        background-color: white;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: height 0.3s ease-in-out;
+        gap: 0;
+        z-index: 11;
+    }
+    
+    .menu-navegacion.activo {
+        height: calc(100vh - 65px); /* Altura completa menos el header */
+    }
+    
+    .elemento-menu {
+        width: 100%;
+        text-align: center;
+        padding: 1.2rem;
+        border-radius: 0;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    .menu-navegacion.activo .elemento-menu {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* Retraso escalonado para la animación de los elementos del menú */
+    .menu-navegacion.activo .elemento-menu:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+    .menu-navegacion.activo .elemento-menu:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+    .menu-navegacion.activo .elemento-menu:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+    .menu-navegacion.activo .elemento-menu:nth-child(4) {
+        transition-delay: 0.4s;
+    }
+}
+
+/* =========== */
+/* F O O T E R */
+/* =========== */
+
+.footer {
+    background-color: #0e0e0e;
+    color: #eaeaea;
+    font-family: "Work Sans", sans-serif;
+    padding-top: 40px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+.footer-column {
+    flex: 1 1 150px;
+    min-width: 200px;
+}
+
+.footer-logo {
+    width: 120px;
+    margin-bottom: 15px;
+}
+
+.footer-column h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: #fff;
+    border-bottom: 2px solid #F06B9A;    
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.footer-column p,
+.footer-column li {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column a:hover {
+    color: #F06B9A;
+}
+
+.footer-sedes i {
+    margin-right: 8px;
+    color: #FF6B8B;
+}
+
+.footer-socials i {
+    margin-right: 8px;
+    color: #F06B9A;
+}
+
+.footer-barra {
+    background-color: #070707;
+    text-align: center;
+    padding: 15px 10px;
+    font-size: 13px;
+    color: #aaa;
+    margin-top: 30px;
+}
+
+/* ================================= */
+/* E S T I L O S   G E N E R A L E S */
+/* ================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Work Sans", sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #FFF9F9;
+    margin: 0;
+    padding-top: 80px; 
+}
+
+.contenedor-principal {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* ============================= */
+/* L A S   4   S E C C I Ó N E S */
+/* ============================= */
+
+.seccion { /* C A J A   D E   S E C C I Ó N */
+    background-color: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.seccion:hover { /* E F E C T O   D E   H O V E R */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.titulo-seccion-1 { /* T I T U L O */
+    color: #FF6B8B;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    position: relative;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.titulo-seccion-1::after { /* R A Y I T A   D E L   T I T U L O */
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    height: 4px;
+    background-color: #FFA07A;
+    border-radius: 2px;
+}
+
+.titulo-seccion-2, .titulo-seccion-3 { /* T I T U L O */
+    color: #FF6B8B;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    position: relative;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.titulo-seccion-2::after, .titulo-seccion-3::after { /* R A Y I T A   D E L   T I T U L O */
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background-color: #FFA07A;
+    border-radius: 2px;
+}
+
+.titulo-seccion-4, .titulo-seccion-5 { /* T I T U L O */
+    color: #FF6B8B;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    position: relative;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.titulo-seccion-4::after, .titulo-seccion-5::after { /* R A Y I T A   D E L   T I T U L O */
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    height: 4px;
+    background-color: #FFA07A;
+    border-radius: 2px;
+}
+
+.texto-seccion { /* E S P A C I A D O   D E L   P A R R A F O */
+    max-width: 600px; 
+    margin: 0 auto 20px auto; 
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    text-align: center; 
+    padding: 0 15px; 
+}
+
+/* ============= */
+/* D I V I S O R */
+/* ============= */
+
+.divisor { /* L I N E A   D I V I S O R A */
+    height: 2px;
+    background: linear-gradient(to right, transparent, #FF6B8B, transparent);
+    margin: 40px 0;
+    border: none;
+}
+
+/* ================== */
+/* F O R M U L A R I O */
+/* ================== */
+
+.formulario-contacto {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.campo-formulario {
+    margin-bottom: 15px;
+}
+
+.campo-formulario label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.campo-formulario input,
+.campo-formulario textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.boton-enviar {
+    background: #FF6B8B;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+    display: block;
+    margin: 20px auto; 
+    text-align: center;
+}
+
+.boton-enviar:hover {
+    background: #FFA07A;
+}
+
+/* =========================== */
+/* B O T O N   W H A T S A P P */
+/* =========================== */
+
+.whatsapp {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 70px;
+    height: 70px;
+    background-color: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;  
+}
+
+.whatsapp:active {
+    transform: scale(0.95);
+}
+
+.whatsapp img {
+    width: 38px;
+    height: 38px;
+    transition: transform 0.3s ease;
+    z-index: 2;
+}
+
+.whatsapp:hover img {
+    transform: scale(1.1);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+.whatsapp:not(:hover) {
+    animation: pulse 2.5s infinite;
+}

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<!-- Página del menú de helados de Florentina -->
+<!-- saved from url=(0043)http://localhost/florentina_final/menu.html -->
+<html lang="es">
+
+<head>
+    <!-- Configuración de codificación y responsividad -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Ícono de la pestaña del navegador -->
+    <link rel="shortcut icon" href="http://localhost/florentina_final/imgs/img-logo-superior/Logo-Superior.png">
+
+    <!-- Título de la página -->
+    <title>Menú de Helados</title>
+
+    <!-- ================== ESTILOS ================== -->
+
+    <!-- Normalize: reinicia estilos para mayor compatibilidad entre navegadores -->
+    <link rel="stylesheet" href="./menu_files/menu-normalize.css">
+
+    <!-- Hoja de estilos principal del sitio -->
+    <link rel="stylesheet" href="./menu_files/menu.css">
+
+    <!-- ================== FUENTES ================== -->
+
+    <!-- Precarga de fuentes desde Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="./menu_files/css2" rel="stylesheet"> <!-- ⚠️ Revisa que esta URL esté completa -->
+
+    <!-- ================== ICONOS ================== -->
+
+    <!-- Font Awesome para íconos (asegúrate de usar versión estable si es necesario) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./menu_files/all.min.css">
+
+    <!-- ================== SCRIPTS ================== -->
+
+    <!-- Script del buscador con 'defer' para ejecutar después del parseo del DOM -->
+    <script src="./menu_files/buscador.js.descarga" defer=""></script>
+
+    <!-- ================== ESTILOS INTERNOS ================== -->
+
+    <style>
+        /* Clase utilizada por alguna herramienta o extensión (posiblemente Imageye) */
+        .imageye-selected {
+            outline: 2px solid black !important;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================== ENCABEZADO ================== -->
+    <header class="header-superior">
+
+        <!-- Barra superior decorativa -->
+        <div class="barra-superior">
+            <div class="linea-color"></div>
+        </div>
+
+        <!-- ================== NAVEGACIÓN ================== -->
+        <nav class="barra-navegacion">
+
+            <!-- Logo de la marca que redirige a la página de inicio -->
+            <div class="contenedor-logo-marca">
+                <a href="http://localhost/florentina_final/inicio.html" class="logo-marca-href">
+                    <img src="./menu_files/Logo-FlorentinaSVG.svg" alt="Logo Florentina" class="logo-florentina">
+                </a>
+            </div>
+
+            <!-- Botón de menú hamburguesa para dispositivos móviles -->
+            <button class="hamburguesa" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Menú de navegación principal -->
+            <div class="menu-navegacion">
+                <a href="inicio.html" class="elemento-menu">Inicio</a>
+                <a href="menu.html" class="elemento-menu">Menú</a>
+                <a href="quienes-somos.html" class="elemento-menu">Quienes Somos</a>
+                <a href="contactanos.html" class="elemento-menu">Contáctanos</a>
+            </div>
+
+            <!-- Buscador integrado en la barra de navegación -->
+            <div class="buscador-navegacion">
+                <input type="text" id="buscador" placeholder="Busca algo..." aria-label="Buscar productos">
+                <ul id="resultados" class="sugerencias" aria-live="polite"></ul>
+            </div>
+
+            <!-- Icono del carrito de compras con contador -->
+            <div class="carrito-icono">
+                <button id="btn-carrito" aria-label="Abrir carrito">
+                    🛒 <span id="contador-carrito">0</span>
+                </button>
+            </div>
+
+        </nav>
+        <!-- ================== FIN NAVEGACIÓN ================== -->
+
+    </header>
+    <!-- ================== FIN ENCABEZADO ================== -->
+
+    <!-- ================== CARRITO FLOTANTE ================== -->
+    <!-- Componente oculto inicialmente que muestra el contenido del carrito -->
+    <div id="carrito" class="carrito" aria-hidden="true">
+        <h3>🛒 Tu Carrito</h3>
+        <ul id="lista-carrito"></ul> <!-- Productos añadidos dinámicamente -->
+        <p>Total: <span id="total-carrito">$0</span></p> <!-- Total de compra -->
+        <button id="vaciar-carrito">Vaciar carrito</button>
+        <button id="btn-pagar">Pagar</button>
+    </div>
+
+    <!-- ================== CONTENIDO PRINCIPAL ================== -->
+    <main>
+        <!-- Título de la galería de productos -->
+        <h2 class="titulo-galeria">Nuestros Productos</h2>
+
+        <!-- Barra decorativa (probablemente una línea visual) -->
+        <h2 class="barra-galeria" aria-hidden="true"></h2>
+
+        <!-- Contenedor de tarjetas de producto, se puede llenar dinámicamente -->
+        <div class="menu-container" id="menu-container">
+
+            <!-- ====== PRODUCTO: Ensalada de Frutas ====== -->
+            <div class="card">
+                <img src="./menu_files/ensalada.jpg" alt="Ensalada De Frutas"
+                    onerror="this.src='imgs/img-productos/placeholder.jpg';">
+                <h2>Ensalada De Frutas</h2>
+                <p class="price">$21.000</p>
+                <p>Ensalada de frutas con papaya, piña, banano, fresa, manzana, crema de leche, leche condensada,
+                    chantillí, mucho queso y tu sabor de helado favorito.</p>
+                <center><button class="btn-wsp" data-id="c0szod" data-_listener="1">🛒 Agregar al carrito</button>
+                </center>
+            </div>
+
+            <!-- (REPETIDO PARA CADA PRODUCTO) -->
+            <!-- Cada .card contiene: imagen (con fallback), nombre, precio, descripción, botón -->
+
+            <div class="card">
+                <img src="./menu_files/premium.jpg" alt="Ensalada Premium"
+                    onerror="this.src='imgs/img-productos/placeholder.jpg';">
+                <h2>Ensalada Premium</h2>
+                <p class="price">$28.000</p>
+                <p>3 sabores de helado, brownie, fresa, piña, manzana, banano, papaya, cereza, crema de leche, queso,
+                    chantillí, 2 galletas, salsa de choco y chispitas.</p>
+                <center><button class="btn-wsp" data-id="61naxn" data-_listener="1">🛒 Agregar al carrito</button>
+                </center>
+            </div>
+
+            <!-- Producto sin imagen -->
+            <div class="card">
+                <h2>Helado Alegria</h2>
+                <p class="price">$14.000</p>
+                <p>2 sabores de helado, 2 barquillos, fresa, masmelo, chantillí, chispitas y salsa de chocolate.</p>
+                <center><button class="btn-wsp" data-id="ueut1" data-_listener="1">🛒 Agregar al carrito</button>
+                </center>
+            </div>
+
+            <!-- ... Más tarjetas de producto ... -->
+            <!-- Productos como: Helado Explosión, Copa Florentina, Waffles, Hamburguesas, Emparedados -->
+
+        </div> <!-- Fin del contenedor de productos -->
+    </main>
+    <!-- ================== FIN CONTENIDO ================== -->
+
+    <!-- ================== BOTÓN WHATSAPP FLOTANTE ================== -->
+    <a href="https://api.whatsapp.com/send/?phone=573228599240&amp;text&amp;type=phone_number&amp;app_absent=0"
+        id="btn-whatsapp" class="whatsapp" title="Escríbenos por WhatsApp" aria-label="Ir a WhatsApp">
+        <img src="./menu_files/124034.png" alt="WhatsApp">
+    </a>
+
+    <!-- ================== PIE DE PÁGINA ================== -->
+    <!-- 👣 FOOTER -->
+    <footer class="footer">
+
+        <!-- 📦 CONTENEDOR PRINCIPAL DEL FOOTER -->
+        <div class="footer-container">
+
+            <!-- 🧊 LOGO + DESCRIPCIÓN -->
+            <div class="footer-column">
+                <img src="imgs/img-footer/Florentina-FondoTransparente.png" alt="Logo Florentina" class="footer-logo"
+                    style="height:64px">
+
+                <p>
+                    <strong>Florentina Ice Cream</strong> 🍦<br>
+                    Helados artesanales, crepes y malteadas servidos en un ambiente cálido y moderno.<br>
+                </p>
+            </div>
+
+            <!-- 🗂️ CATEGORÍAS DE NAVEGACIÓN -->
+            <div class="footer-column">
+                <h3>Categorias</h3>
+                <ul>
+                    <li><a href="inicio.html">Inicio</a></li>
+                    <li><a href="menu.html">Menú</a></li>
+                    <li><a href="quienes-somos.html">Quienes Somos</a></li>
+                    <li><a href="contactanos.html">Conctáctanos</a></li>
+                </ul>
+            </div>
+
+            <!-- 👥 QUIÉNES SOMOS (SUBSECCIONES) -->
+            <div class="footer-column">
+                <h3>Quienes Somos</h3>
+                <ul>
+                    <li><a href="quienes-somos.html#que-es-florentina">Que es Florentina</a></li>
+                    <li><a href="quienes-somos.html#quienes-somos">Quiénes Somos</a></li>
+                    <li><a href="quienes-somos.html#mision">Misión</a></li>
+                    <li><a href="quienes-somos.html#vision">Visión</a></li>
+                    <li><a href="quienes-somos.html#equipo-humano">Equipo Humano</a></li>
+                </ul>
+            </div>
+
+            <!-- 📍 UBICACIONES / SEDES -->
+            <div class="footer-column">
+                <h3>Sedes</h3>
+                <ul class="footer-sedes">
+                    <li>
+                        <i class="fas fa-location-dot"></i>
+                        <a
+                            href="https://www.google.com/maps/search/Florentina+Heladeria/@2.947055,-75.3000819,7034m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDQyMy4wIKXMDSoASAFQAw%3D%3D">
+                            Centro: Cra 7 #15-29
+                        </a>
+                    </li>
+                    <li>
+                        <i class="fas fa-location-dot"></i>
+                        <a
+                            href="https://www.google.com/maps/search/Florentina+Heladeria/@2.947055,-75.3000819,7034m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDQyMy4wIKXMDSoASAFQAw%3D%3D">
+                            Norte: Calle 64 #1E - 03
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 📱 REDES SOCIALES -->
+            <div class="footer-column">
+                <h3>Síguenos</h3>
+                <ul class="footer-socials">
+                    <li>
+                        <a href="https://api.whatsapp.com/send/?phone=573228599240&text&type=phone_number&app_absent=0">
+                            <i class="fab fa-whatsapp"></i> Whatsapp
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/florentinaneiva/?locale=es_LA" target="_blank" rel="noopener">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/florentina.colombia/?hl=es" target="_blank" rel="noopener">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 📄 COPYRIGHT / DERECHOS -->
+        <div class="footer-barra" style="text-align:center;margin-top:12px;">
+            &copy; 2025
+            <span style="color: #f06b9a;">
+                <strong>Florentina Ice Cream.</strong>
+            </span>
+            Todos los derechos reservados.
+        </div>
+    </footer>
+    <!-- ================== FIN PIE DE PÁGINA ================== -->
+
+
+    <!-- scripts existentes -->
+    <script src="./menu_files/responsive-header.js.descarga" defer=""></script>
+    <script src="./menu_files/carrito.js.descarga" defer=""></script>
+
+    <!-- script que carga los productos desde localStorage y renderiza las cards -->
+    <script>
+        (function () {
+            const STORAGE_KEY = 'florentina_productos_v1';
+
+            function uid() {
+                return Math.floor(Math.random() * 1e9).toString(36);
+            }
+
+            const initialProducts = [
+                { id: uid(), nombre: "Ensalada De Frutas", precio: 21000, imagen: "imgs/img-productos/ensalada.jpg", descripcion: "Ensalada de frutas con papaya, piña, banano, fresa, manzana, crema de leche, leche condensada, chantillí, mucho queso y tu sabor de helado favorito.", visible: true },
+                { id: uid(), nombre: "Ensalada Premium", precio: 28000, imagen: "imgs/img-productos/premium.jpg", descripcion: "3 sabores de helado, brownie, fresa, piña, manzana, banano, papaya, cereza, crema de leche, queso, chantillí, 2 galletas, salsa de choco y chispitas.", visible: true },
+                { id: uid(), nombre: "Helado Alegria", precio: 14000, imagen: "imgs/img-productos/alegria.jpg", descripcion: "2 sabores de helado, 2 barquillos, fresa, masmelo, chantillí, chispitas y salsa de choco.", visible: true },
+                // ... (resto de productos)
+            ];
+
+            function readStorage() {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    if (!raw) return null;
+                    return JSON.parse(raw);
+                } catch (e) {
+                    console.error('Error leyendo localStorage', e);
+                    return null;
+                }
+            }
+
+            function writeStorage(arr) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+            }
+
+            function ensureInitialData() {
+                if (readStorage() === null) {
+                    writeStorage(initialProducts);
+                }
+            }
+
+            function escapeHtml(s) {
+                if (!s) return '';
+                return String(s).replace(/[&<>"']/g, function (c) {
+                    return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]);
+                });
+            }
+
+            function attachAddToCartFallback() {
+                const botones = document.querySelectorAll('.btn-wsp');
+                botones.forEach(btn => {
+                    if (btn.dataset._listener) return;
+                    btn.dataset._listener = '1';
+                    btn.addEventListener('click', function () {
+                        const contador = document.getElementById('contador-carrito');
+                        const current = parseInt(contador.textContent || '0', 10);
+                        contador.textContent = current + 1;
+                    });
+                });
+            }
+
+            function renderMenu(filterText = '') {
+                const cont = document.getElementById('menu-container');
+                const productos = readStorage() || [];
+                cont.innerHTML = '';
+
+                const visibles = productos.filter(p => p.visible !== false);
+                const search = (filterText || '').toLowerCase().trim();
+                const filtered = search === '' ? visibles :
+                    visibles.filter(p => ((p.nombre || '') + ' ' + (p.descripcion || '')).toLowerCase().includes(search));
+
+                if (filtered.length === 0) {
+                    cont.innerHTML = '<p style="padding:18px;">No hay productos para mostrar.</p>';
+                    return;
+                }
+
+                filtered.forEach(p => {
+                    const div = document.createElement('div');
+                    div.className = 'card';
+
+                    const imgSrc = p.imagen && p.imagen.trim() !== '' ? p.imagen : 'imgs/img-productos/placeholder.jpg';
+
+                    div.innerHTML = `
+                        <img src="${imgSrc}" alt="${escapeHtml(p.nombre)}" onerror="this.src='imgs/img-productos/placeholder.jpg'">
+                        <h2>${escapeHtml(p.nombre)}</h2>
+                        <p class="price">$${Number(p.precio || 0).toLocaleString('es-CO')}</p>
+                        <p>${escapeHtml(p.descripcion || '')}</p>
+                        <center><button class="btn-wsp" data-id="${p.id}">🛒 Agregar al carrito</button></center>
+                    `;
+                    cont.appendChild(div);
+                });
+
+                attachAddToCartFallback();
+            }
+
+            function hookBuscador() {
+                const buscador = document.getElementById('buscador');
+                if (!buscador) return;
+                buscador.addEventListener('input', function (e) {
+                    renderMenu(e.target.value);
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                ensureInitialData();
+                renderMenu();
+                hookBuscador();
+            });
+
+        })();
+    </script>
+
+    <!-- script admin / debug (separado en su propio IIFE) -->
+    <script>
+        (function () {
+            const STORAGE_KEY = 'florentina_productos_v1';
+            const CART_KEY = 'contador_carrito';
+
+            // --- Genera un ID único ---
+            function uid() {
+                return Math.floor(Math.random() * 1e9).toString(36);
+            }
+
+            // --- Productos iniciales (solo si no hay nada guardado) ---
+            const initialProducts = [
+                {
+                    id: uid(),
+                    nombre: "Ensalada De Frutas",
+                    precio: 21000,
+                    imagen: "imgs/img-productos/ensalada.jpg",
+                    descripcion: "Ensalada de frutas con papaya, piña, banano, fresa, manzana, crema de leche, leche condensada, chantillí, mucho queso y tu sabor de helado favorito.",
+                    visible: true
+                },
+                {
+                    id: uid(),
+                    nombre: "Ensalada Premium",
+                    precio: 28000,
+                    imagen: "imgs/img-productos/premium.jpg",
+                    descripcion: "3 sabores de helado, brownie, fresa, piña, manzana, banano, papaya, cereza, crema de leche, queso, chantillí, 2 galletas, salsa de choco y chispitas.",
+                    visible: true
+                },
+                {
+                    id: uid(),
+                    nombre: "Helado Alegría",
+                    precio: 14000,
+                    imagen: "imgs/img-productos/alegria.jpg",
+                    descripcion: "2 sabores de helado, 2 barquillos, fresa, masmelo, chantillí, chispitas y salsa de choco.",
+                    visible: true
+                }
+            ];
+
+            // --- Funciones de almacenamiento ---
+            function readStorage() {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    return raw ? JSON.parse(raw) : null;
+                } catch (e) {
+                    console.error('Error leyendo localStorage', e);
+                    return null;
+                }
+            }
+
+            function writeStorage(arr) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+            }
+
+            function ensureInitialData() {
+                if (!readStorage()) {
+                    writeStorage(initialProducts);
+                }
+            }
+
+            // --- Escapar HTML para evitar inyecciones ---
+            function escapeHtml(s) {
+                return String(s || '').replace(/[&<>"']/g, c => (
+                    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+                ));
+            }
+
+            // --- Carrito persistente ---
+            function actualizarContador(delta) {
+                const actual = parseInt(localStorage.getItem(CART_KEY) || '0', 10) + delta;
+                localStorage.setItem(CART_KEY, actual);
+                const contador = document.getElementById('contador-carrito');
+                if (contador) contador.textContent = actual;
+            }
+
+            function inicializarContador() {
+                const contador = document.getElementById('contador-carrito');
+                if (contador) contador.textContent = localStorage.getItem(CART_KEY) || 0;
+            }
+
+            // --- Render del menú ---
+            function renderMenu(filterText = '') {
+                const cont = document.getElementById('menu-container');
+                if (!cont) return;
+
+                const productos = readStorage() || [];
+                cont.innerHTML = '';
+
+                const visibles = productos.filter(p => p.visible !== false);
+                const search = filterText.toLowerCase().trim();
+                const filtered = search === ''
+                    ? visibles
+                    : visibles.filter(p =>
+                        ((p.nombre || '') + ' ' + (p.descripcion || '')).toLowerCase().includes(search)
+                    );
+
+                if (filtered.length === 0) {
+                    cont.innerHTML = '<p style="padding:18px;">No hay productos para mostrar.</p>';
+                    return;
+                }
+
+                filtered.forEach(p => {
+                    const div = document.createElement('div');
+                    div.className = 'card';
+                    const imgSrc = p.imagen?.trim() || 'imgs/img-productos/placeholder.jpg';
+                    div.innerHTML = `
+        <img src="${imgSrc}" alt="${escapeHtml(p.nombre)}"
+             onerror="this.onerror=null; this.src='imgs/img-productos/placeholder.jpg'">
+        <h2>${escapeHtml(p.nombre)}</h2>
+        <p class="price">$${Number(p.precio || 0).toLocaleString('es-CO')}</p>
+        <p>${escapeHtml(p.descripcion || '')}</p>
+        <center><button class="btn-wsp" data-id="${p.id}">🛒 Agregar al carrito</button></center>
+      `;
+                    cont.appendChild(div);
+                });
+
+                // Botones de agregar al carrito
+                document.querySelectorAll('.btn-wsp').forEach(btn => {
+                    if (btn.dataset._listener) return;
+                    btn.dataset._listener = '1';
+                    btn.addEventListener('click', () => actualizarContador(1));
+                });
+            }
+
+            // --- Buscador ---
+            function hookBuscador() {
+                const buscador = document.getElementById('buscador');
+                if (!buscador) return;
+                buscador.addEventListener('input', e => renderMenu(e.target.value));
+            }
+
+            // --- Inicio ---
+            document.addEventListener('DOMContentLoaded', () => {
+                ensureInitialData();
+                renderMenu();
+                hookBuscador();
+                inicializarContador();
+            });
+        })();
+    </script>
+
+
+
+
+</body>
+
+</html>

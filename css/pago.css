@@ -1,0 +1,152 @@
+/* Estilo general */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f9e3f0, #fdf6f0); /* tonos heladería */
+  margin: 0;
+  padding: 20px;
+  color: #444;
+}
+
+/* Contenedor del formulario */
+.contenedor-form {
+  background: #fff;
+  max-width: 420px;
+  margin: auto;
+  padding: 25px 55px 25px 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  border: 3px solid #ffdce5; /* borde rosa pastel */
+  animation: aparecer 0.8s ease;
+}
+
+/* Título */
+.contenedor-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #e26d91; /* rosa fresa */
+}
+
+/* Etiquetas */
+label {
+  display: block;
+  margin: 10px 0 6px;
+  font-weight: 600;
+  color: #6a4c93; /* lavanda */
+}
+
+/* Inputs */
+#form-compra input[type="text"],
+#form-compra input[type="tel"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+/* Efecto focus */
+#form-compra input[type="text"]:focus,
+#form-compra input[type="tel"]:focus {
+  border-color: #f06b9a;
+  outline: none;
+  box-shadow: 0 0 6px rgba(240, 107, 154, 0.4);
+}
+
+/* Botón */
+button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #e26d91, #f9a8c6); /* fresa a frambuesa */
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(226,109,145,0.35);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(226,109,145,0.25);
+}
+/* Fieldset general */
+fieldset {
+  border: 3px solid #f3bfd5; /* rosa pastel */
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 20px;
+  background: #fffafc; /* fondo muy clarito */
+  box-shadow: 0 6px 5px rgba(0,0,0,0.08);
+  animation: aparecer 0.8s ease;
+}
+
+/* Título (legend) */
+legend {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0 10px;
+  color: #e26d91; /* fresa */
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+/* Etiquetas de radios */
+fieldset label {
+  display: block;
+  margin: 12px 0;
+  font-weight: 600;
+  color: #6a4c93; /* lavanda */
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+fieldset input[type="radio"] {
+  margin-right: 8px;
+  accent-color: #e26d91; /* color del check radio (moderno) */
+}
+
+fieldset label:hover {
+  color: #e26d91;
+}
+
+/* QR */
+.qr {
+  width: 160px;
+  display: none;
+  margin: 10px auto 20px auto;
+  border: 2px dashed #f3bfd5;
+  border-radius: 12px;
+  padding: 8px;
+  background: #fff;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.qr.mostrar {
+  display: block;
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+
+/* Animación entrada */
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Login - Florentina</title>
+
+    <!-- Se asume que admin-editor.js es necesario en otra parte, pero no se usa en este fragmento -->
+    <script src="js/admin-editor.js"></script>
+
+    <style>
+        /* Estilos básicos para centrar el contenido y darle formato */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #faf7fb;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        /* Tarjeta principal que contiene el formulario */
+        .card {
+            width: 380px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Título principal */
+        h2 {
+            margin: 0 0 12px;
+            color: #333;
+        }
+
+        /* Etiquetas de los inputs */
+        label {
+            font-size: 13px;
+            color: #555;
+            display: block;
+            margin-top: 12px;
+        }
+
+        /* Inputs de texto y contraseña */
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 4px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        /* Botones principales */
+        button {
+            background: #f06b9a;
+            color: white;
+            border: none;
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Efecto hover en botones */
+        button:hover:not(:disabled) {
+            background: #d0547e;
+        }
+
+        /* Botones secundarios tipo link */
+        .link {
+            background: transparent;
+            border: 1px solid #eee;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            color: #555;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .link:hover {
+            background-color: #f4f4f4;
+            border-color: #ccc;
+        }
+
+        /* Contenedor para acciones (botones) */
+        .actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-top: 12px;
+        }
+
+        /* Mensajes de estado */
+        .msg {
+            margin: 8px 0;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 13px;
+            display: none;
+            /* Oculto por defecto */
+        }
+
+        /* Mensaje éxito */
+        .success {
+            background: #e8fff2;
+            color: #036;
+        }
+
+        /* Mensaje error */
+        .error {
+            background: #fff0f0;
+            color: #a33;
+        }
+
+        /* Texto pequeño o nota informativa */
+        .small {
+            font-size: 12px;
+            color: #666;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h2>Acceso Administrador</h2>
+
+        <!-- Contenedor para mostrar mensajes (error, éxito, info) -->
+        <div id="msg" class="msg"></div>
+
+        <!-- Formulario de login -->
+        <form id="loginForm" autocomplete="off" novalidate>
+            <label for="username">Usuario</label>
+            <input id="username" name="username" type="text" value="admin" required autocomplete="username" />
+
+            <label for="password">Contraseña</label>
+            <input id="password" name="password" type="password" required autocomplete="current-password" />
+
+            <div class="actions">
+                <button type="submit">Iniciar sesión</button>
+                <button id="btn-to-change" type="button" class="link">Cambiar contraseña</button>
+            </div>
+        </form>
+
+        <!-- Sección para cambiar contraseña, oculta por defecto -->
+        <div id="changeBox" style="display:none; margin-top:12px;">
+            <label for="current">Contraseña actual</label>
+            <input id="current" name="current" type="password" autocomplete="current-password" />
+
+            <label for="newpass">Nueva contraseña</label>
+            <input id="newpass" name="newpass" type="password" autocomplete="new-password" />
+
+            <label for="newpass2">Confirmar nueva contraseña</label>
+            <input id="newpass2" name="newpass2" type="password" autocomplete="new-password" />
+
+            <div class="actions" style="margin-top:8px;">
+                <button id="btn-change" class="link" type="button">Guardar nueva</button>
+                <button id="btn-cancel-change" class="link" type="button">Cancelar</button>
+            </div>
+        </div>
+
+        <!-- Nota informativa -->
+        <div class="small">
+            Nota: este es un sistema <strong>cliente</strong> (sin servidor). Para producción te recomiendo un backend
+            seguro.
+        </div>
+    </div>
+
+    <script>
+        (async () => {
+            // Constantes para claves de almacenamiento local/session
+            const PW_KEY = 'florentina_admin_pw';
+            const SESSION_KEY = 'florentina_admin';
+
+            // Elementos DOM relevantes
+            const msgEl = document.getElementById('msg');
+            const loginForm = document.getElementById('loginForm');
+            const btnToChange = document.getElementById('btn-to-change');
+            const changeBox = document.getElementById('changeBox');
+            const btnCancelChange = document.getElementById('btn-cancel-change');
+            const btnChange = document.getElementById('btn-change');
+
+            /**
+             * Muestra un mensaje en pantalla con estilo según el tipo
+             * @param {string} text - Mensaje a mostrar
+             * @param {'ok'|'error'|'info'} [type='info'] - Tipo de mensaje para estilos
+             */
+            function showMessage(text, type = 'info') {
+                msgEl.style.display = 'block';
+                msgEl.textContent = text;
+
+                // Limpiar clases previas y asignar según tipo
+                msgEl.className = 'msg';
+                if (type === 'ok') {
+                    msgEl.classList.add('success');
+                } else if (type === 'error') {
+                    msgEl.classList.add('error');
+                }
+            }
+
+            /**
+             * Oculta el mensaje de estado
+             */
+            function hideMessage() {
+                msgEl.style.display = 'none';
+                msgEl.textContent = '';
+                msgEl.className = 'msg';
+            }
+
+            /**
+             * Hashea un string usando SHA-256 y devuelve el resultado en hexadecimal
+             * @param {string} str - Texto a hashear
+             * @returns {Promise<string>} Hash hexadecimal
+             */
+            async function sha256Hex(str) {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(str);
+                const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            }
+
+            /**
+             * Inicializa la contraseña por defecto si no existe en localStorage
+             */
+            async function initializeDefaultPassword() {
+                if (!localStorage.getItem(PW_KEY)) {
+                    const defaultPass = 'admin123';
+                    const hashed = await sha256Hex(defaultPass);
+                    localStorage.setItem(PW_KEY, hashed);
+                    console.log('Se creó contraseña por defecto: admin123 (cambia la contraseña después).');
+                }
+            }
+
+            /**
+             * Limpia los inputs de cambio de contraseña
+             */
+            function clearChangePasswordInputs() {
+                document.getElementById('current').value = '';
+                document.getElementById('newpass').value = '';
+                document.getElementById('newpass2').value = '';
+            }
+
+            /**
+             * Limpia el input de contraseña del login
+             */
+            function clearLoginPasswordInput() {
+                document.getElementById('password').value = '';
+            }
+
+            /**
+             * Obtiene la URL a la que se redirige después del login exitoso
+             * @returns {string} URL de retorno
+             */
+            function getReturnUrl() {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get('return') || 'admin.html';
+            }
+
+            // Inicializamos contraseña por defecto si no existe
+            await initializeDefaultPassword();
+
+            // Listener para el formulario de login
+            loginForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                hideMessage();
+
+                const username = document.getElementById('username').value.trim();
+                const password = document.getElementById('password').value;
+
+                // Validación básica
+                if (!username || !password) {
+                    showMessage('Completa usuario y contraseña', 'error');
+                    return;
+                }
+
+                // Hashear la contraseña ingresada y comparar con la almacenada
+                const inputHash = await sha256Hex(password);
+                const storedHash = localStorage.getItem(PW_KEY);
+
+                if (inputHash === storedHash) {
+                    // Inicio de sesión exitoso
+                    sessionStorage.setItem(SESSION_KEY, '1');
+                    showMessage('Ingreso correcto. Redirigiendo...', 'ok');
+
+                    // Redireccionar luego de pequeña pausa para mostrar mensaje
+                    setTimeout(() => {
+                        location.href = getReturnUrl();
+                    }, 600);
+                } else {
+                    showMessage('Usuario o contraseña incorrecta', 'error');
+                }
+            });
+
+            // Mostrar el formulario para cambiar contraseña y ocultar el login
+            btnToChange.addEventListener('click', () => {
+                hideMessage();
+                changeBox.style.display = 'block';
+                loginForm.style.display = 'none';
+                document.getElementById('current').focus();
+            });
+
+            // Cancelar el cambio de contraseña y volver al login
+            btnCancelChange.addEventListener('click', () => {
+                hideMessage();
+                changeBox.style.display = 'none';
+                loginForm.style.display = 'block';
+                clearChangePasswordInputs();
+            });
+
+            // Guardar la nueva contraseña
+            btnChange.addEventListener('click', async () => {
+                hideMessage();
+
+                const currentPass = document.getElementById('current').value;
+                const newPass = document.getElementById('newpass').value;
+                const confirmPass = document.getElementById('newpass2').value;
+
+                // Validar campos completos
+                if (!currentPass || !newPass || !confirmPass) {
+                    showMessage('Completa todos los campos', 'error');
+                    return;
+                }
+
+                // Validar que las nuevas contraseñas coincidan
+                if (newPass !== confirmPass) {
+                    showMessage('Las nuevas contraseñas no coinciden', 'error');
+                    return;
+                }
+
+                // Verificar contraseña actual
+                const currentHash = await sha256Hex(currentPass);
+                const storedHash = localStorage.getItem(PW_KEY);
+
+                if (currentHash !== storedHash) {
+                    showMessage('Contraseña actual incorrecta', 'error');
+                    return;
+                }
+
+                // Actualizar contraseña almacenada
+                const newHash = await sha256Hex(newPass);
+                localStorage.setItem(PW_KEY, newHash);
+
+                showMessage('Contraseña actualizada ✔', 'ok');
+
+                // Volver al login después de breve pausa
+                setTimeout(() => {
+                    changeBox.style.display = 'none';
+                    loginForm.style.display = 'block';
+                    clearChangePasswordInputs();
+                    clearLoginPasswordInput();
+                }, 800);
+            });
+        })();
+    </script>
+</body>
+
+</html>

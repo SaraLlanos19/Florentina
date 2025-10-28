@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin - Menú</title>
+
+  <!-- Hoja de estilos externa -->
+  <link rel="stylesheet" href="./admin_menu_files/admin_menu.css" />
+
+  <style>
+    /* Estilo para la vista previa de imagen */
+    .preview {
+      margin-top: 10px;
+      max-width: 150px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      display: none;
+      /* Oculta la imagen hasta que haya una imagen válida */
+    }
+
+    /* Estilo para mensaje de confirmación */
+    .mensaje-exito {
+      display: none;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #4caf50;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      font-size: 16px;
+      z-index: 9999;
+      animation: aparecer 0.4s ease;
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Estilo para la selección de imagen */
+    .imageye-selected {
+      outline: 2px solid black !important;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Administrar Menú</h1>
+
+  <!-- Mensaje de éxito al crear/editar producto -->
+  <div id="mensajeExito" class="mensaje-exito" role="alert" aria-live="assertive">
+    ✅ Producto creado correctamente
+  </div>
+
+  <!-- Sección para agregar o editar productos -->
+  <section class="form-section" aria-labelledby="form-title">
+    <h2 id="form-title">Agregar / Editar Producto</h2>
+
+    <form id="form-producto" novalidate>
+      <!-- Campo oculto para ID del producto, útil para edición -->
+      <input type="hidden" id="id" />
+
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required autocomplete="off" />
+
+      <label for="precio">Precio:</label>
+      <input type="number" id="precio" name="precio" min="0" step="0.01" required autocomplete="off" />
+
+      <label for="imagen">Imagen (ruta o URL):</label>
+      <input type="url" id="imagen" name="imagen" placeholder="Pega una URL o sube una imagen" autocomplete="off" />
+
+      <label for="imagenArchivo">O sube una imagen desde tu PC:</label>
+      <input type="file" id="imagenArchivo" name="imagenArchivo" accept="image/*" />
+
+      <!-- Vista previa de la imagen seleccionada o URL -->
+      <img id="preview" class="preview" src="" alt="Vista previa de la imagen del producto" aria-hidden="true" />
+
+      <label for="descripcion">Descripción:</label>
+      <textarea id="descripcion" name="descripcion" rows="3" autocomplete="off"></textarea>
+
+      <label for="visible">
+        <input type="checkbox" id="visible" name="visible" checked />
+        Visible
+      </label>
+
+      <button type="submit">Guardar</button>
+    </form>
+  </section>
+
+  <!-- Sección donde se listan los productos existentes -->
+  <section aria-labelledby="productos-title">
+    <h2 id="productos-title">Productos</h2>
+
+    <table id="tabla-productos" role="grid" aria-describedby="productos-desc">
+      <caption id="productos-desc">Lista de productos disponibles con opciones para editar o eliminar</caption>
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Visible</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Ejemplo de productos estáticos, idealmente serán cargados dinámicamente -->
+        <tr>
+          <td>Ensalada De Frutas</td>
+          <td>$21.000</td>
+          <td>Sí</td>
+          <td class="actions">
+            <button class="edit" aria-label="Editar Ensalada De Frutas">✏️</button>
+            <button class="delete" aria-label="Eliminar Ensalada De Frutas">🗑️</button>
+          </td>
+        </tr>
+        <!-- Resto de productos aquí -->
+        <!-- Mantén el patrón para los demás productos -->
+      </tbody>
+    </table>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const STORAGE_KEY = "florentina_productos_v1";
+
+      const form = document.getElementById("form-producto");
+      const tabla = document.querySelector("#tabla-productos tbody");
+      const preview = document.getElementById("preview");
+      const mensajeExito = document.getElementById("mensajeExito");
+      const imagenURL = document.getElementById("imagen");
+      const imagenArchivo = document.getElementById("imagenArchivo");
+
+      let productos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      let editIndex = null;
+
+      // === Guardar cambios en localStorage ===
+      function guardarEnLocalStorage() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(productos));
+      }
+
+      // === Mostrar productos en tabla ===
+      function mostrarProductos() {
+        tabla.innerHTML = "";
+        if (productos.length === 0) {
+          tabla.innerHTML = `<tr><td colspan="4" style="text-align:center;">No hay productos registrados</td></tr>`;
+          return;
+        }
+
+        productos.forEach((p, index) => {
+          const fila = document.createElement("tr");
+          fila.innerHTML = `
+        <td>${p.nombre}</td>
+        <td>$${Number(p.precio).toLocaleString()}</td>
+        <td>${p.visible ? "Sí" : "No"}</td>
+        <td class="actions">
+          <button class="edit" data-index="${index}">✏️</button>
+          <button class="delete" data-index="${index}">🗑️</button>
+        </td>
+      `;
+          tabla.appendChild(fila);
+        });
+      }
+
+      // === Vista previa de imagen desde URL ===
+      imagenURL.addEventListener("input", () => {
+        const url = imagenURL.value.trim();
+        if (url) {
+          preview.src = url;
+          preview.style.display = "block";
+        } else {
+          preview.src = "";
+          preview.style.display = "none";
+        }
+      });
+
+      // === Vista previa desde archivo local ===
+      imagenArchivo.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        if (file.size > 2 * 1024 * 1024) {
+          alert("La imagen es demasiado grande. Máximo 2 MB.");
+          imagenArchivo.value = "";
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          preview.src = event.target.result;
+          preview.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      });
+
+      // === Guardar o editar producto ===
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const nuevoProducto = {
+          id: editIndex !== null ? productos[editIndex].id : Date.now().toString(36),
+          nombre: form.nombre.value.trim(),
+          precio: parseFloat(form.precio.value),
+          descripcion: form.descripcion.value.trim(),
+          visible: form.visible.checked,
+          imagen: preview.src || "",
+        };
+
+        if (!nuevoProducto.nombre || isNaN(nuevoProducto.precio) || !nuevoProducto.imagen) {
+          alert("Por favor completa todos los campos obligatorios.");
+          return;
+        }
+
+        if (editIndex !== null) {
+          productos[editIndex] = nuevoProducto;
+          editIndex = null;
+        } else {
+          productos.push(nuevoProducto);
+        }
+
+        guardarEnLocalStorage();
+        form.reset();
+        preview.style.display = "none";
+        mostrarProductos();
+
+        mensajeExito.style.display = "block";
+        mensajeExito.textContent = "✅ Producto guardado correctamente";
+        setTimeout(() => (mensajeExito.style.display = "none"), 2000);
+      });
+
+      // === Editar o eliminar producto ===
+      tabla.addEventListener("click", (e) => {
+        const index = e.target.dataset.index;
+        if (e.target.classList.contains("edit")) {
+          const p = productos[index];
+          form.nombre.value = p.nombre;
+          form.precio.value = p.precio;
+          form.descripcion.value = p.descripcion;
+          form.visible.checked = p.visible;
+          preview.src = p.imagen;
+          preview.style.display = p.imagen ? "block" : "none";
+          editIndex = index;
+        } else if (e.target.classList.contains("delete")) {
+          if (confirm("¿Seguro que deseas eliminar este producto?")) {
+            productos.splice(index, 1);
+            guardarEnLocalStorage();
+            mostrarProductos();
+          }
+        }
+      });
+
+      // === Mostrar productos al cargar ===
+      mostrarProductos();
+    });
+  </script>
+
+</body>
+
+</html>

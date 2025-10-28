@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- 🧠 METADATOS Y RECURSOS INICIALES -->
+    <title>Contactanos</title>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="imgs/img-logo-superior/Logo-Superior.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 🎨 ESTILOS CSS -->
+    <link rel="stylesheet" href="css/contactanos.css"> <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="css/contactanos-normalize.css"> <!-- Normaliza estilos por defecto -->
+
+    <!-- 🔤 FUENTES DE GOOGLE -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- 🌐 ÍCONOS DE FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- ⚙️ SCRIPTS JAVASCRIPT -->
+    <script src="js/buscador.js"></script> <!-- Buscador del menú -->
+    <script src="js/responsive-header.js"></script> <!-- Menú responsive -->
+    <script src="js/formulario.js"></script> <!-- Lógica para validar o manejar el formulario -->
+</head>
+
+<body>
+    
+<!-- 🔝 ENCABEZADO SUPERIOR -->
+<header class="header-superior">
+    <div class="barra-superior">
+        <div class="linea-color"></div> <!-- Línea decorativa superior -->
+    </div>
+
+    <!-- 🚀 BARRA DE NAVEGACIÓN -->
+    <nav class="barra-navegacion">
+        <!-- 🖼️ LOGO PRINCIPAL -->
+        <div class="contenedor-logo-marca">
+            <a href="inicio.html" class="logo-marca-href">
+                <img src="imgs/img-header/Logo-FlorentinaSVG.svg" alt="Logo Florentina" class="logo-florentina">
+            </a>
+        </div>
+        
+        <!-- 🍔 MENÚ HAMBURGUESA (móvil) -->
+        <button class="hamburguesa" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <!-- 🔗 MENÚ DE ENLACES -->
+        <div class="menu-navegacion">
+            <a href="inicio.html" class="elemento-menu">Inicio</a>
+            <a href="menu.html" class="elemento-menu">Menú</a>
+            <a href="quienes-somos.html" class="elemento-menu">Quienes Somos</a>
+            <a href="contactanos.html" class="elemento-menu">Contáctanos</a>
+        </div>
+
+        <!-- 🔍 BARRA DE BÚSQUEDA -->
+        <div class="buscador-navegacion">
+            <input type="text" id="buscador" placeholder=" Busca algo...">
+            <ul id="resultados" class="sugerencias"></ul> <!-- Resultados de búsqueda -->
+        </div>            
+    </nav>
+</header>
+
+<!-- 🧾 CONTENIDO PRINCIPAL -->
+<main class="contenedor-principal">
+
+    <!-- ✉️ SECCIÓN DEL FORMULARIO DE CONTACTO -->
+    <section class="seccion" id="formulario">
+        <h2 class="titulo-seccion-1">Contáctanos</h2>
+
+        <!-- 📬 FORMULARIO DE ENVÍO DE MENSAJE -->
+        <form class="formulario-contacto" action="/florentina_final/php/formulario.php" method="POST">
+
+            <!-- 🧍 CAMPO: Nombre -->
+            <div class="campo-formulario">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ej: Kevin" 
+                    pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" 
+                    title="Solo letras y espacios, sin números" 
+                    autocomplete="off" required>
+            </div>
+
+            <!-- 🧍 CAMPO: Apellido -->
+            <div class="campo-formulario">
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" placeholder="Ej: Pastrana" 
+                    pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" 
+                    title="Solo letras y espacios, sin números" 
+                    autocomplete="off" required>
+            </div>
+
+            <!-- 📧 CAMPO: Correo electrónico -->
+            <div class="campo-formulario">
+                <label for="correo">Correo electrónico:</label>
+                <input type="email" id="correo" name="correo" placeholder="Ej: kevin@example.com" 
+                    title="Escribe un correo válido" 
+                    autocomplete="off" required>
+            </div>
+
+            <!-- 📞 CAMPO: Teléfono -->
+            <div class="campo-formulario">
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="Ej: +57 3001234567" 
+                    pattern="[\d\s]{7,15}" 
+                    title="Solo números (7 a 15 dígitos)" 
+                    autocomplete="off" required>
+            </div>
+
+            <!-- 💬 CAMPO: Comentario o mensaje -->
+            <div class="campo-formulario">
+                <label for="comentario">Comentario o mensaje:</label>
+                <textarea id="comentario" name="comentario" rows="5" placeholder="Escribe aquí tu consulta..." required></textarea>
+            </div>
+
+            <!-- 📤 BOTÓN DE ENVÍO -->
+            <button type="submit" class="boton-enviar">Enviar mensaje</button>
+        </form>
+    </section>
+</main>
+
+<!-- 📱 BOTÓN FLOTANTE DE WHATSAPP -->
+<a href="https://api.whatsapp.com/send/?phone=573228599240&text&type=phone_number&app_absent=0" 
+   id="btn-whatsapp" class="whatsapp" title="Escríbenos por WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp">
+</a>
+
+<!-- 🔻 PIE DE PÁGINA -->
+<footer class="footer">
+
+    <!-- 📦 CONTENIDO DEL FOOTER -->
+    <div class="footer-container">
+
+        <!-- 🍨 Columna: Logo y descripción -->
+        <div class="footer-column">
+            <img src="imgs/img-footer/Florentina-FondoTransparente.png" alt="Logo Florentina" class="footer-logo">
+            <p>
+                <strong>Florentina Ice Cream</strong> 🍦<br>
+                Helados artesanales, crepes y malteadas servidos en un ambiente cálido y moderno.
+            </p>
+        </div>
+
+        <!-- 🧭 Columna: Enlaces principales -->
+        <div class="footer-column">
+            <h3>Categorias</h3>
+            <ul>
+                <li><a href="inicio.html">Inicio</a></li>
+                <li><a href="menu.html">Menú</a></li>
+                <li><a href="quienes-somos.html">Quienes Somos</a></li>
+                <li><a href="contactanos.html">Conctáctanos</a></li> <!-- ⚠️ Revisión ortográfica sugerida: "Conctáctanos" → "Contáctanos" -->
+            </ul>
+        </div>
+
+        <!-- 📘 Columna: Enlaces a secciones internas -->
+        <div class="footer-column">
+            <h3>Quienes Somos</h3>
+            <ul>
+                <li><a href="quienes-somos.html#que-es-florentina">Que es Florentina</a></li>
+                <li><a href="quienes-somos.html#quienes-somos">Quiénes Somos</a></li>
+                <li><a href="quienes-somos.html#mision">Misión</a></li>
+                <li><a href="quienes-somos.html#vision">Visión</a></li>
+                <li><a href="quienes-somos.html#equipo-humano">Equipo Humano</a></li>
+            </ul>
+        </div>
+
+        <!-- 🗺️ Columna: Ubicación de sedes -->
+        <div class="footer-column">
+            <h3>Sedes</h3>
+            <ul class="footer-sedes">
+                <li><i class="fas fa-location-dot"></i><a href="https://www.google.com/maps/search/Florentina+Heladeria/@2.947055,-75.3000819,7034m/data=!3m1!1e3?entry=ttu"> Centro: Cra 7 #15-29</a></li>
+                <li><i class="fas fa-location-dot"></i><a href="https://www.google.com/maps/search/Florentina+Heladeria/@2.947055,-75.3000819,7034m/data=!3m1!1e3?entry=ttu"> Norte: Calle 64 #1E - 03</a></li>
+            </ul>
+        </div>
+
+        <!-- 📱 Columna: Redes sociales -->
+        <div class="footer-column">
+            <h3>Síguenos</h3>
+            <ul class="footer-socials">
+                <li><a href="https://api.whatsapp.com/send/?phone=573228599240&text&type=phone_number&app_absent=0"><i class="fab fa-whatsapp"></i> Whatsapp</a></li>
+                <li><a href="https://www.facebook.com/florentinaneiva/?locale=es_LA" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                <li><a href="https://www.instagram.com/florentina.colombia/?hl=es" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ⚖️ BARRA INFERIOR DE COPYRIGHT -->
+    <div class="footer-barra">
+        &copy; 2025 <span style="color: #f06b9a;"><strong>Florentina Ice Cream.</strong></span> Todos los derechos reservados.
+    </div>
+</footer>
+
+</body>
+</html>

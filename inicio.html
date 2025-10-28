@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- 🧠 CONFIGURACIÓN BÁSICA -->
+    <meta charset="UTF-8" /> <!-- Codificación de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Diseño responsivo -->
+    <link rel="shortcut icon" href="imgs/img-logo-superior/Logo-Superior.png"> <!-- Ícono del sitio -->
+
+    <!-- 📝 TÍTULO DE LA PESTAÑA -->
+    <title>Florentina</title>
+
+    <!-- 🎨 ESTILOS CSS -->
+    <link rel="stylesheet" href="css/inicio.css" /> <!-- Estilos principales -->
+    <link rel="stylesheet" href="css/inicio-normalize.css" /> <!-- Reset de estilos del navegador -->
+
+    <!-- 🔤 FUENTES DE GOOGLE -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Optimización de carga -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Agbalumo&display=swap" rel="stylesheet">
+    <!-- Fuente Agbalumo -->
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet"> <!-- Fuente Work Sans -->
+
+    <!-- 🔣 ÍCONOS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Font Awesome -->
+
+    <!-- ⚙️ SCRIPTS -->
+    <script src="js/inicio.js"></script> <!-- Funciones generales -->
+    <script src="js/buscador.js"></script> <!-- Lógica del buscador -->
+    <script src="js/responsive-header.js"></script> <!-- Header adaptable -->
+</head>
+
+<body>
+
+    <!-- 🔹 HEADER SUPERIOR -->
+    <header class="header-superior">
+
+        <!-- 🔸 Barra decorativa superior -->
+        <div class="barra-superior">
+            <div class="linea-color"></div>
+        </div>
+
+        <!-- 🔹 Barra de navegación principal del sitio -->
+        <nav class="barra-navegacion" role="navigation" aria-label="Navegación principal">
+
+            <!-- 🟪 Contenedor del logo de la marca -->
+            <div class="contenedor-logo-marca">
+                <!-- 🔸 Logo principal con enlace a la página de inicio -->
+                <a href="inicio.html" class="logo-marca-href">
+                    <img src="imgs/img-header/Logo-FlorentinaSVG.svg" alt="Logo Florentina" class="logo-florentina">
+                </a>
+            </div>
+
+            <!-- 🔘 Botón de menú hamburguesa para navegación móvil -->
+            <button class="hamburguesa" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+
+            <!-- 📑 Menú de navegación con enlaces a secciones principales -->
+            <div class="menu-navegacion">
+                <a href="inicio.html" class="elemento-menu">Inicio</a>
+                <a href="menu.html" class="elemento-menu">Menú</a>
+                <a href="quienes-somos.html" class="elemento-menu">Quienes Somos</a>
+                <a href="contactanos.html" class="elemento-menu">Contáctanos</a>
+            </div>
+
+            <!-- 🔍 Buscador dentro de la navegación -->
+            <div class="buscador-navegacion">
+                <input type="text" id="buscador" placeholder=" Busca algo..." aria-label="Buscador">
+                <!-- 📌 Lista dinámica de sugerencias de búsqueda -->
+                <ul id="resultados" class="sugerencias" aria-live="polite"></ul>
+            </div>
+
+            <!-- 🔐 Enlace al área de administración (icono de usuario con candado) -->
+            <div style="margin-left:auto;display:flex;gap:12px;align-items:center">
+                <a href="admin_login.html" title="Editar inicio" aria-label="Editar inicio">
+                    <i class="fa-solid fa-user-lock" style="color:#f06b9a;font-size:24px"></i>
+                </a>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <main>
+        <!-- 🔹 SECCIÓN DE INICIO -->
+        <section id="inicio" aria-labelledby="titulo-inicio" class="seccion-inicio"
+            style="position:relative;border-radius:8px;overflow:hidden">
+
+            <!-- 🟣 Capa decorativa o de superposición -->
+            <div class="capa" aria-hidden="true"></div>
+
+            <!-- 🔹 Bloque principal del contenido de inicio -->
+            <div class="bloque-inicio" role="region" aria-labelledby="titulo-inicio">
+
+                <!-- 🔸 Contenedor del título principal y subtítulos -->
+                <div class="titulo-principal">
+
+                    <!-- 🏷️ Título principal visible en la cabecera de la sección -->
+                    <h1 id="main-title">¡Bienvenidos a Florentina!</h1>
+
+                    <!-- 🔸 Subtítulos o descripciones complementarias -->
+                    <div class="subtitulo-principal">
+
+                        <!-- 📄 Descripción general de la heladería -->
+                        <p id="main-subtitle">
+                            En el corazón de Neiva, Florentina te invita a disfrutar de un rincón lleno de sabor y
+                            frescura, donde cada helado es una experiencia inolvidable.
+                        </p>
+
+                        <!-- 📄 Llamado a descubrir sabores y ambiente del local -->
+                        <p id="main-subtitle-1">
+                            Descubre nuestros exquisitos sabores, relájate en un ambiente acogedor y vive la magia que
+                            solo Florentina puede ofrecer.
+                        </p>
+
+                        <!-- 📍 Información adicional sobre ubicación (accesible solo visualmente, no para lectores de pantalla) -->
+                        <p id="main-subtitle-2" aria-hidden="true">
+                            📍 ¡Te esperamos en Neiva para crear juntos momentos únicos y deliciosos! 🍨✨
+                        </p>
+                    </div>
+
+                    <!-- 🔘 Botón de llamada a la acción para ordenar desde el menú -->
+                    <a href="menu.html" class="boton" role="button">Ordena Ya ➡️</a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 🖼️ SECCIÓN GALERÍA -->
+        <section id="galeria" class="seccion-galeria">
+            <div class="container">
+
+                <!-- 🏷️ Título principal de la galería -->
+                <h2 class="titulo-galeria">Galería</h2>
+
+                <!-- 🔸 Barra decorativa o separadora -->
+                <h2 class="barra-galeria"></h2>
+
+                <!-- 📌 Subtítulo o descripción breve -->
+                <p class="subtitulo-galeria">Nuestro Top #10</p>
+
+                <!-- 🖼️ Contenedor general de la galería -->
+                <div class="galeria-wrapper">
+                    <div class="galeria-container">
+
+                        <!-- 🎯 ITEM 1 -->
+                        <div class="item-galeria">
+                            <div class="card-comidas">
+                                <img src="imgs/imgs-galeria/Copa-Florentina.jpg" alt="" class="img-galeria">
+                                <div class="overlay-galeria">
+                                    <div class="info-comidas">
+                                        <h3>Copa Florentina</h3>
+                                        <span class="numero-comidas">#1</span>
+                                        <span class="numero-comidas">Deliciosa copa de 3 helados, con frutas y
+                                            toppings</span>
+                                        <div class="logo"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 🎯 ITEM 2 -->
+                        <div class="item-galeria">
+                            <div class="card-comidas">
+                                <img src="imgs/imgs-galeria/Fresas-con-Crema.jpg" alt="" class="img-galeria">
+                                <div class="overlay-galeria">
+                                    <div class="info-comidas">
+                                        <h3>Fresas con Crema</h3>
+                                        <span class="numero-comidas">#2</span>
+                                        <span class="numero-comidas">Fresas con deliciosa crema chantilly</span>
+                                        <div class="logo"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 🎯 ITEM 3 -->
+                        <div class="item-galeria">
+                            <div class="card-comidas">
+                                <img src="imgs/imgs-galeria/Merengon.jpg" alt="" class="img-galeria">
+                                <div class="overlay-galeria">
+                                    <div class="info-comidas">
+                                        <h3>Merengón</h3>
+                                        <span class="numero-comidas">#3</span>
+                                        <span class="numero-comidas">Delicioso merengon con helado, durazno y
+                                            fresas</span>
+                                        <div class="logo"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 🎯 ITEM 4 -->
+                        <div class="item-galeria">
+                            <div class="card-comidas">
+                                <img src="imgs/imgs-galeria/Waffles.jpg" alt="" class="img-galeria">
+                                <div class="overlay-galeria">
+                                    <div class="info-comidas">
+                                        <h3>Waffles</h3>
+                                        <span class="numero-comidas">#4</span>
+                                        <span class="numero-comidas">Deliciosos waffle con dos toppings y fruta</span>
+                                        <div class="logo"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 🎯 ITEM 5 -->
+                        <div class="item-galeria">
+                            <div class="card-comidas">
+                                <img src="imgs/imgs-galeria/Malteada.jpg" alt="" class="img-galeria">
+                                <div class="overlay-galeria">
+                                    <div class="info-comidas">
+                                        <h3>Malteada</h3>
+                                        <span class="numero-comidas">#5</span>
+                                        <span class="numero-comidas">Deliciosa malteada con chocolate y brownie</span>
+                                        <div class="logo"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 🎯 ITEM 6 -->
+                        <div class="item-galeria">
+                            <div class="card-comidas">
+                                <img src="imgs/imgs-galeria/Choco-Huila.jpg" alt="" class="img-galeria">
+                                <div class="overlay-galeria">
+                                    <div class="info-comidas">
+                                        <h3>Choco Huila</h3>
+                                        <span class="numero-comidas">#6</span>
+                                        <span class="numero-comidas">Deliciosa malteada con crema chantilly y pedacitos
+                                            de alchiras</span>
+                                        <div class="logo"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 🎯 ITEM 7 -->
+                        <div class="item-galeria">
+                            <div class="card-comidas">
+                                <img src="imgs/imgs-galeria/Copa-Flo.jpg" alt="" class="img-galeria">
+                                <div class="overlay-galeria">
+                                    <div class="info-comidas">
+                                        <h3>Copa Mía</h3>
+                                        <span class="numero-comidas">#7</span>
+                                        <span class="numero-comidas">Deliciosa Copa con 3 helados y frutas</span>
+                                        <div class="logo"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 🎯 ITEM 8 -->
+                        <div class="item-galeria">
+                            <div class="card-comidas">
+                                <img src="imgs/imgs-galeria/Chocolatoso.jpg" alt="" class="img-galeria">
+                                <div class="overlay-galeria">
+                                    <div class="info-comidas">
+                                        <h3>Chocolatoso</h3>
+                                        <span class="numero-comidas">#8</span>
+                                        <span class="numero-comidas">Deliciosa bebida de chocolate junto con
+                                            barquillos</span>
+                                        <div class="logo"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 🎯 ITEM 9 -->
+                        <div class="item-galeria">
+                            <div class="card-comidas">
+                                <img src="imgs/imgs-galeria/Malteada-Roja.jpg" alt="" class="img-galeria">
+                                <div class="overlay-galeria">
+                                    <div class="info-comidas">
+                                        <h3>Malteada Frutos Rojos</h3>
+                                        <span class="numero-comidas">#9</span>
+                                        <span class="numero-comidas">Malteada de frutos rojos con fresas y
+                                            chantilly</span>
+                                        <div class="logo"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 🎯 ITEM 10 -->
+                        <div class="item-galeria">
+                            <div class="card-comidas">
+                                <img src="imgs/imgs-galeria/Mini-Waffle.jpg" alt="" class="img-galeria">
+                                <div class="overlay-galeria">
+                                    <div class="info-comidas">
+                                        <h3>Mini Waffles</h3>
+                                        <span class="numero-comidas">#10</span>
+                                        <span class="numero-comidas">Tres mini waffles con toppings a tu eleccion</span>
+                                        <div class="logo"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 🔁 CONTROLES DE NAVEGACIÓN DE LA GALERÍA -->
+                <div class="controles-galeria">
+
+                    <!-- ⬅️ Botón anterior -->
+                    <button class="boton-control prev" aria-label="Anterior">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                    </button>
+
+                    <!-- ➡️ Botón siguiente -->
+                    <button class="boton-control next" aria-label="Siguiente">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18l6-6-6-6" />
+                        </svg>
+                    </button>
+
+                </div>
+
+        </section>
+
+
+        <!-- 🏢 SECCIÓN DE SEDES -->
+        <section class="sedes-section" aria-labelledby="titulo-sedes">
+
+            <!-- 🏷️ Título principal -->
+            <h2 class="titulo-galeria" id="titulo-sedes">Nuestras Sedes</h2>
+
+            <!-- 🔸 Barra decorativa debajo del título -->
+            <h2 class="barra-galeria" aria-hidden="true"></h2>
+
+            <!-- ⏰ HORARIOS DE ATENCIÓN -->
+            <div class="horario-atencion">
+                <h3>Horario de Atención</h3>
+
+                <!-- 📅 Lunes a Viernes -->
+                <div class="dias-horario">
+                    <p><strong>Lunes a Viernes:</strong></p>
+                    <p id="horario-lv">8:00 am - 5:00 pm</p>
+                </div>
+
+                <!-- 📅 Sábados -->
+                <div class="dias-horario">
+                    <p><strong>Sábados:</strong></p>
+                    <p id="horario-sab">9:00 am - 3:00 pm</p>
+                </div>
+
+                <!-- 📅 Domingos y Festivos -->
+                <div class="dias-horario">
+                    <p><strong>Domingos y Festivos:</strong></p>
+                    <p id="horario-dom">10:00 am - 2:00 pm</p>
+                </div>
+            </div>
+
+            <!-- 📍 CONTENEDOR DE SEDES -->
+            <div class="sedes-container">
+
+                <!-- 🗺️ Sede Centro -->
+                <div class="sede">
+                    <h3>Sede Centro</h3>
+                    <p><i class="fas fa-location-dot" aria-hidden="true"></i> Carrera 7 #15-29</p>
+
+                    <!-- 🌐 Mapa embebido de Google Maps -->
+                    <iframe class="maps"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127506.85031440169!2d-75.44128610273435!3d2.9337839999999966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3b75672585937f%3A0x7567739bcf78101c!2sFLORENTINA!5e0!3m2!1ses!2sco!4v1745796795271!5m2!1ses!2sco"
+                        width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade" aria-hidden="false"></iframe>
+                </div>
+
+                <!-- 🗺️ Sede Norte -->
+                <div class="sede">
+                    <h3>Sede Norte</h3>
+                    <p><i class="fas fa-location-dot" aria-hidden="true"></i> Calle 64 #1E - 03</p>
+
+                    <!-- 🌐 Mapa embebido de Google Maps -->
+                    <iframe class="maps"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127506.85031440169!2d-75.44128610273435!3d2.9337839999999966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3b75bcced81135%3A0xd3c823cf41bb167a!2sFlorentina!5e0!3m2!1ses!2sco!4v1745796844973!5m2!1ses!2sco"
+                        width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade" aria-hidden="false"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 💬 BOTÓN FLOTANTE DE WHATSAPP -->
+    <a href="https://api.whatsapp.com/send/?phone=573228599240&text&type=phone_number&app_absent=0" id="btn-whatsapp"
+        class="whatsapp" title="Escríbenos por WhatsApp" style="position:fixed;right:18px;bottom:18px;">
+
+        <!-- 🟢 Ícono de WhatsApp -->
+        <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp" style="width:40px;height:40px">
+    </a>
+
+    <!-- 👣 FOOTER -->
+    <footer class="footer">
+
+        <!-- 📦 CONTENEDOR PRINCIPAL DEL FOOTER -->
+        <div class="footer-container">
+
+            <!-- 🧊 LOGO + DESCRIPCIÓN -->
+            <div class="footer-column">
+                <img src="imgs/img-footer/Florentina-FondoTransparente.png" alt="Logo Florentina" class="footer-logo"
+                    style="height:64px">
+
+                <p>
+                    <strong>Florentina Ice Cream</strong> 🍦<br>
+                    Helados artesanales, crepes y malteadas servidos en un ambiente cálido y moderno.<br>
+                </p>
+            </div>
+
+            <!-- 🗂️ CATEGORÍAS DE NAVEGACIÓN -->
+            <div class="footer-column">
+                <h3>Categorias</h3>
+                <ul>
+                    <li><a href="inicio.html">Inicio</a></li>
+                    <li><a href="menu.html">Menú</a></li>
+                    <li><a href="quienes-somos.html">Quienes Somos</a></li>
+                    <li><a href="contactanos.html">Conctáctanos</a></li>
+                </ul>
+            </div>
+
+            <!-- 👥 QUIÉNES SOMOS (SUBSECCIONES) -->
+            <div class="footer-column">
+                <h3>Quienes Somos</h3>
+                <ul>
+                    <li><a href="quienes-somos.html#que-es-florentina">Que es Florentina</a></li>
+                    <li><a href="quienes-somos.html#quienes-somos">Quiénes Somos</a></li>
+                    <li><a href="quienes-somos.html#mision">Misión</a></li>
+                    <li><a href="quienes-somos.html#vision">Visión</a></li>
+                    <li><a href="quienes-somos.html#equipo-humano">Equipo Humano</a></li>
+                </ul>
+            </div>
+
+            <!-- 📍 UBICACIONES / SEDES -->
+            <div class="footer-column">
+                <h3>Sedes</h3>
+                <ul class="footer-sedes">
+                    <li>
+                        <i class="fas fa-location-dot"></i>
+                        <a
+                            href="https://www.google.com/maps/search/Florentina+Heladeria/@2.947055,-75.3000819,7034m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDQyMy4wIKXMDSoASAFQAw%3D%3D">
+                            Centro: Cra 7 #15-29
+                        </a>
+                    </li>
+                    <li>
+                        <i class="fas fa-location-dot"></i>
+                        <a
+                            href="https://www.google.com/maps/search/Florentina+Heladeria/@2.947055,-75.3000819,7034m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDQyMy4wIKXMDSoASAFQAw%3D%3D">
+                            Norte: Calle 64 #1E - 03
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 📱 REDES SOCIALES -->
+            <div class="footer-column">
+                <h3>Síguenos</h3>
+                <ul class="footer-socials">
+                    <li>
+                        <a href="https://api.whatsapp.com/send/?phone=573228599240&text&type=phone_number&app_absent=0">
+                            <i class="fab fa-whatsapp"></i> Whatsapp
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/florentinaneiva/?locale=es_LA" target="_blank" rel="noopener">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/florentina.colombia/?hl=es" target="_blank" rel="noopener">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 📄 COPYRIGHT / DERECHOS -->
+        <div class="footer-barra" style="text-align:center;margin-top:12px;">
+            &copy; 2025
+            <span style="color: #f06b9a;">
+                <strong>Florentina Ice Cream.</strong>
+            </span>
+            Todos los derechos reservados.
+        </div>
+    </footer>
+
+
+    <script>
+        // 🔑 Clave para localStorage
+        const STORAGE_KEY = 'florentina_inicio_v1';
+
+        // 📝 Valores por defecto si no hay datos guardados
+        const defaults = {
+            title: "¡Bienvenidos a Florentina!",
+            subtitle: "En el corazón de Neiva, Florentina te invita a disfrutar de un rincón lleno de sabor y frescura, donde cada helado es una experiencia inolvidable.",
+            bgImage: "",  // Si no hay, se usará imagen local de fallback
+            gallery: [    // Galería con 4 imágenes predeterminadas
+                { title: "Copa Florentina", img: "imgs/imgs-galeria/Copa-Florentina.jpg", description: "3 helados, frutas y toppings" },
+                { title: "Fresas con Crema", img: "imgs/imgs-galeria/Fresas-con-Crema.jpg", description: "Fresas con deliciosa crema chantilly" },
+                { title: "Merengón", img: "imgs/imgs-galeria/Merengon.jpg", description: "Merengón con helado y durazno" },
+                { title: "Waffles", img: "imgs/imgs-galeria/Waffles.jpg", description: "Waffles con toppings" }
+            ]
+        };
+
+        // 🎯 Función para cargar datos (merge defaults + localStorage)
+        function loadData() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return defaults;
+                const parsed = JSON.parse(raw);
+                return {
+                    title: parsed.title || defaults.title,
+                    subtitle: parsed.subtitle || defaults.subtitle,
+                    bgImage: parsed.bgImage || defaults.bgImage,
+                    gallery: Array.isArray(parsed.gallery) ? parsed.gallery : defaults.gallery
+                };
+            } catch (e) {
+                console.error('Error leyendo storage:', e);
+                return defaults;
+            }
+        }
+
+        // 🔐 Función para escapar caracteres HTML (para evitar XSS)
+        function escapeHtml(s) {
+            return String(s || '').replace(/[&<>"]/g, c =>
+                ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+        }
+
+        // 🎨 Función que hace renderizado principal en DOM
+        function render() {
+            const data = loadData();
+
+            // Actualiza título y subtítulo
+            const mainTitle = document.getElementById('main-title');
+            const mainSubtitle = document.getElementById('main-subtitle');
+            if (mainTitle) mainTitle.textContent = data.title;
+            if (mainSubtitle) mainSubtitle.textContent = data.subtitle;
+
+            // Imagen de fondo, si existe imagen en base64 o URL, si no fallback local
+            const bg = document.getElementById('bg-image');
+            if (bg) {
+                if (data.bgImage && data.bgImage.length > 10) {
+                    bg.src = data.bgImage;
+                } else {
+                    bg.src = 'imgs/img-header/default-bg.jpg';
+                }
+            }
+
+            // Renderizado dinámico galería
+            const gal = document.getElementById('galeria-items');
+            if (!gal) return;
+            gal.innerHTML = '';
+            (data.gallery || []).forEach(item => {
+                const node = document.createElement('div');
+                node.className = 'item-galeria';
+                node.innerHTML = `
+          <div class="card-comidas" role="group" aria-label="${escapeHtml(item.title)}">
+            <img src="${escapeHtml(item.img || 'imgs/imgs-galeria/placeholder.jpg')}" alt="${escapeHtml(item.title)}">
+            <div class="overlay-galeria">
+              <div class="info-comidas">
+                <h3>${escapeHtml(item.title)}</h3>
+                <span class="numero-comidas">${escapeHtml(item.description || '')}</span>
+              </div>
+            </div>
+          </div>
+        `;
+                gal.appendChild(node);
+            });
+        }
+
+        // 🛠️ Renderiza cuando DOM esté listo
+        document.addEventListener('DOMContentLoaded', render);
+
+        // 🔄 Escucha cambios en localStorage desde otras pestañas para actualizar en vivo
+        window.addEventListener('storage', (e) => {
+            if (e.key === STORAGE_KEY) {
+                try { render(); } catch (err) { console.error(err); }
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
